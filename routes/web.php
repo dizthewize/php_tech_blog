@@ -11,6 +11,16 @@
 |
 */
 
+Route::resource('posts', 'PostsController');
+
+// Route::get('/', 'PostsController@index')->name('posts');
+
 Route::get('/', function () {
-    return view('welcome');
+  return redirect()->action('PostsController@index');
 });
+
+Route::get('/about', 'PagesController@about');
+
+Auth::routes();
+
+Route::get('/dashboard', 'DashboardController@index');
