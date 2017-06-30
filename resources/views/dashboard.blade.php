@@ -1,5 +1,21 @@
 @extends('layouts.app')
 
+@section('banner-heading')
+    <header id="about" class="intro-header" style="background-image: url({{asset('img/about-page.jpg')}})">
+        <div class="container">
+            <div class="row">
+                <div class=" col-md-11 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1>About Us</h1>
+
+                        <hr class="small">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row">

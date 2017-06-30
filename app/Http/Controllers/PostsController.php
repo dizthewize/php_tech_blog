@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 use App\Post;
+use App\Comment;
+use App\Http\Controllers\CommentsController;
 
 class PostsController extends Controller
 {
@@ -92,8 +95,14 @@ class PostsController extends Controller
      */
     public function show($id)
     {
+        
+
         $post = Post::find($id);
-        return view('posts.show')->with('post', $post);
+        $comments = DB::table('comments')
+                        ->where('post_id', '=', $post->id)
+                        ->orderBy('created_at', 'desc')
+                        ->get();
+        return view('posts.show', ['post' => $post])->with('comments', $comments);
     }
 
     /**
@@ -155,7 +164,7 @@ class PostsController extends Controller
             'alert-type' => 'info'
         );
 
-        // Create Post
+        // Update Post
         $post = Post::find($id);
         $post->title = $request->input('title');
         $post->body = $request->input('body');
@@ -167,7 +176,6 @@ class PostsController extends Controller
         } else {
              return redirect('/posts')->with('post', $post)->with('error', 'Unauthorized Page');
         }
-        // $post->save();
 
         return redirect('/posts')->with($notification);
 

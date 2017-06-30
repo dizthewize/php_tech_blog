@@ -12,14 +12,17 @@
 */
 
 Route::resource('posts', 'PostsController');
+Route::resource('comments', 'CommentsController', ['except' => 'index']);
 
-// Route::get('/', 'PostsController@index')->name('posts');
 
 Route::get('/', function () {
   return redirect()->action('PostsController@index');
 });
 
 Route::get('/about', 'PagesController@about');
+
+Route::post('comments/{post_id}', 'CommentsController@store');
+
 
 Auth::routes();
 

@@ -1,21 +1,21 @@
 @extends('layouts.app')
 
 @section('banner-heading')
-    <header class="intro-header" style="background-image: url({{asset('img/show-bg.jpg')}})">
-        <div class="container">
-            <div class="row">
-                <div class=" col-md-11 col-md-offset-1">
-                    <div class="site-heading">
-                        <h1>Everything Tech</h1>
+    <div id="show-post">
+        <header class="intro-header" style="background-image: url({{asset('img/show-bg.jpg')}})">
+            <div class="container">
+                <div class="row">
+                    <div class=" col-md-11 col-md-offset-1">
+                        <div class="site-heading">
+                            <h1 class="title">{{$post->title}}</h1>
 
-                        <hr class="small">
-
-                        <span class="subheading">A place where people post opinions or links about current or future tech</span>
+                            <hr class="small">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </header>
+        </header>
+    </div>
 @endsection
 
 
@@ -24,21 +24,15 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-panel">
-                    {{-- <p class="meta">Posted by _ on _ </p>
-                    <a href="#">
-                        <h2 class="title">Hello</h2>
-                        <p class="sub-title">World</p>
-                    </a>
-                    <hr> --}}
                     <a href="/"><i class="fa fa-arrow-left" aria-hidden="true"></i> Go Back</a>
-                    <h1>{{$post->title}}</h1>
+                    <h1 class="title">{{$post->title}}</h1>
                     <img style="width:100%" src="/storage/cover_images/{{$post->cover_image}}"> 
                     <br><br>
                     <div>
                         {!!$post->body!!}
                     </div>
                     <hr>
-                    <small class="italicize">Written on {{$post->created_at}} by <span class="username">{{$post->user->username}}</span></small>
+                    <small class="italicize">Written on {{ date('M j, Y h:ia', strtotime($post->created_at))}} by <span class="username">{{$post->user->username}}</span></small>
                     <hr>
                     @if (!Auth::guest())
                         @if (Auth::user()->id == $post->user_id)
@@ -48,6 +42,42 @@
                                 {{Form::submit('DELETE', ['class' => 'btn btn-danger'])}}
                             {!!Form::close()!!}
                         @endif
+                    @endif
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            @if (!Auth::guest())
+                @if (Auth::user())
+                    <div class="row">
+                        <div id="comment-form" class="col-md-8 col-md-offset-2">
+                            <h3>Add Comment</h3><br/>
+                            {!! Form::open(['action' => ['CommentsController@store', $post->id], 'method' => 'POST']) !!}
+                            <div class="form-group">
+                                {{Form::label('comment', 'Comment:')}}
+                                {{Form::textarea('comment', '', ['class' => 'form-control', 'placeholder' => 'Comment Text'])}}
+                            </div>
+                            {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
+                            {!! Form::close() !!}
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            @endif
+        </div>
+        <div class="container">
+            <div class="row">
+                <div id="comment-section" class="col-md-8 col-md-offset-2">
+                    <h3>Comments</h3><br/>
+                    @if(count($comments) > 0)
+                        @foreach($comments as $comment)
+                        <h4 class="username"><strong>{{$comment->username}}</strong></h4>
+                        <p class="comment">{{$comment->comment}}</p>
+                        <small class="comment-created-at">Added on {{date('M j, Y h:ia', strtotime($comment->created_at))}}</small>
+                        <hr/>
+                        @endforeach
+                    @else
+                        <p>No Comments Found</p>
                     @endif
                 </div>
             </div>

@@ -1,13 +1,20 @@
 @extends('layouts.app')
 
-@section('img-bg')
-    {{asset('img/index-bg.jpg')}}
-@endsection
+@section('banner-heading')
+    <header id="register" class="intro-header" style="background-image: url({{asset('img/forms-bg.jpg')}})">
+        <div class="container">
+            <div class="row">
+                <div class=" col-md-11 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1>Register</h1>
 
-@section('site-title')
-    <h1>Please Register</h1>
+                        <hr class="small">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 @endsection
-
 
 @section('content')
 <div class="container">

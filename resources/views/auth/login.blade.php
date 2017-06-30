@@ -1,8 +1,20 @@
 @extends('layouts.app')
 
-{{-- @section('img-bg')
-    {{asset('img/index-bg.jpg')}}
-@endsection --}}
+@section('banner-heading')
+    <header id="login" class="intro-header" style="background-image: url({{asset('img/forms-bg.jpg')}})">
+        <div class="container">
+            <div class="row">
+                <div class=" col-md-11 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1>Login</h1>
+
+                        <hr class="small">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+@endsection
 
 
 @section('content')
@@ -14,20 +26,6 @@
                     <div class="panel-body">
                         <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
                             {{ csrf_field() }}
-
-                            {{-- <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                                <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
-                                    @if ($errors->has('email'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('email') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div> --}}
 
                             <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
                                 <label for="username" class="col-md-4 control-label">Username</label>

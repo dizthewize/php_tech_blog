@@ -20,7 +20,7 @@
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
                 <li><a href="/about">About Us</a></li>
-                <li class="dropdown">
+                {{-- <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu menu-dropdown">
@@ -29,7 +29,7 @@
                         <li role="separator" class="divider"></li>
                         <li><a href="/mobile">Mobile</a></li>
                     </ul>
-                    </li>
+                    </li> --}}
                 </ul>
             </ul>
 
@@ -47,6 +47,9 @@
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="/posts/create">Create Post</a>
+                            </li>
                             <li>
                                 <a href="/dashboard">Dashboard</a>
                             </li>
