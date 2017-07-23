@@ -24,17 +24,17 @@
         <h1>Posts</h1>
         @if(count($posts) > 0)
             @foreach($posts as $post)
-                <div class="well">
+                <div class="well fade-scroll">
                     <div class="row">
                         <div class="col-md-4 col-sm-4">
-                            <img style="width:100%" src="/storage/cover_images/{{$post->cover_image}}">
+                            <img class="fade-scroll" style="width:100%" src="/storage/cover_images/{{$post->cover_image}}">
                         </div>
                         <div class="col-md-8 col-sm-8">
                             <p class="meta">Posted by <span class="username">{{$post->user->username}}</span> on {{date('M j, Y h:ia', strtotime($post->created_at))}}</p>
                             <h2 class="title"><a href="/posts/{{$post->id}}">{{$post->title}}</a></h2>
-                              
+
                         </div>
-                    </div>                      
+                    </div>
                 </div>
             @endforeach
             {{ $posts->links() }}
