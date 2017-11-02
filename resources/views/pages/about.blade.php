@@ -28,13 +28,13 @@
                         Vaporware skateboard fingerstache man bun, shoreditch put a bird on it microdosing bushwick VHS you probably haven't heard of them semiotics meditation drinking vinegar. Brunch hashtag migas poutine, VHS everyday carry put a bird on it deep v fam tousled crucifix.
                     </p>
                     <p class="about-us">
-                         Hella la croix chambray, marfa raw denim roof party gentrify wayfarers next level occupy try-hard. Bicycle rights lo-fi jianbing waistcoat, gentrify tattooed tumeric cray letterpress PBR&B. Raclette blog poke, austin lumbersexual swag viral brunch pickled DIY iceland. Dreamcatcher lomo adaptogen, church-key gochujang venmo tilde copper mug. Leggings actually salvia neutra keffiyeh gentrify try-hard crucifix green juice. 
+                         Hella la croix chambray, marfa raw denim roof party gentrify wayfarers next level occupy try-hard. Bicycle rights lo-fi jianbing waistcoat, gentrify tattooed tumeric cray letterpress PBR&B. Raclette blog poke, austin lumbersexual swag viral brunch pickled DIY iceland. Dreamcatcher lomo adaptogen, church-key gochujang venmo tilde copper mug. Leggings actually salvia neutra keffiyeh gentrify try-hard crucifix green juice.
                     </p>
                     <p class="about-us">
-                         Forage portland cloud bread messenger bag chicharrones authentic pabst activated charcoal actually 90's raw denim heirloom microdosing. Jianbing 90's raclette meggings cronut jean shorts shabby chic cold-pressed irony trust fund wolf cred knausgaard. 
+                         Forage portland cloud bread messenger bag chicharrones authentic pabst activated charcoal actually 90's raw denim heirloom microdosing. Jianbing 90's raclette meggings cronut jean shorts shabby chic cold-pressed irony trust fund wolf cred knausgaard.
                     </p>
 
- 
+
                     <hr>
                 </div>
             </div>
