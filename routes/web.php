@@ -15,8 +15,12 @@ Route::resource('posts', 'PostsController');
 Route::resource('comments', 'CommentsController', ['except' => 'index']);
 
 
+// Route::get('/', function () {
+//   return redirect()->action('PostsController@index');
+// });
+
 Route::get('/', function () {
-  return redirect()->action('PostsController@index');
+  return 'Hello';
 });
 
 Route::get('/about', 'PagesController@about');
