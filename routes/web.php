@@ -11,10 +11,6 @@
 |
 */
 
-if(env('APP_ENV') === 'production') {
-  URL::forceSchema('https');
-}
-
 Route::resource('posts', 'PostsController');
 Route::resource('comments', 'CommentsController', ['except' => 'index']);
 
