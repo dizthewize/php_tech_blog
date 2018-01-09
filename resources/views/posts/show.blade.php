@@ -26,7 +26,7 @@
                 <div class="post-panel">
                     <a href="/"><i class="fa fa-arrow-left" aria-hidden="true"></i> Go Back</a>
                     <h1 class="title">{{$post->title}}</h1>
-                    <img style="width:100%" src="/storage/cover_images/{{$post->cover_image}}"> 
+                    <img style="width:100%" src="{{$post->cover_image}}">
                     <br><br>
                     <div>
                         {!!$post->body!!}
@@ -36,7 +36,7 @@
                     <hr>
                     @if (!Auth::guest())
                         @if (Auth::user()->id == $post->user_id)
-                            <a href="/posts/{{$post->id}}/edit" class="btn btn-default">Edit</a>      
+                            <a href="/posts/{{$post->id}}/edit" class="btn btn-default">Edit</a>
                             {!!Form::open(['action' => ['PostsController@destroy', $post->id], 'method' => 'Post', 'class' => 'pull-right'])!!}
                                 {{Form::hidden('_method', 'DELETE')}}
                                 {{Form::submit('DELETE', ['class' => 'btn btn-danger'])}}

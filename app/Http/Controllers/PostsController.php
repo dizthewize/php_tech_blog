@@ -14,7 +14,7 @@ class PostsController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * 
+     *
      * @return \Illuminate\Http\Response
      *
      * $value = str_limit('posts', 50)
@@ -24,7 +24,7 @@ class PostsController extends Controller
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
-    
+
     public function index()
     {
         $posts = Post::orderBy('created_at', 'desc')->paginate(10);
@@ -49,6 +49,7 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
+
         $this->validate($request, [
            'title' => 'required',
            'body' => 'required',
@@ -56,34 +57,30 @@ class PostsController extends Controller
         ]);
 
         $notification = array(
-            'message' => 'You have successfully made a new post!', 
+            'message' => 'You have successfully made a new post!',
             'alert-type' => 'success'
         );
 
-        // Handle File Upload
-        if($request->hasFile('cover_image')) {
-            // Get filename with extension
-            $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
-            // Get filename only
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            //Get just ext
-            $extension = $request->file('cover_image')->getClientOriginalExtension();
-            // Filename to store
-            $fileNameToStore = $filename.'_'.time().'.'.$extension;
-            // Upload image
-            $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
-        } else {
-            $fileNameToStore = 'noimage.jpg';
-        }
-        // Create Post
-        $post = new Post;
-        $post->title = $request->input('title');
-        $post->body = $request->input('body');
-        $post->user_id = auth()->user()->id;
-        $post->cover_image = $fileNameToStore;
-        $post->save();
+        if ($request->hasFile('cover_image')) {
+          $file = $request->file('cover_image');
+          $post = new Post;
+          $post->title = $request->input('title');
+          $post->body = $request->input('body');
+          $post->user_id = auth()->user()->id;
+          $post->cover_image = $file->move('img', $file->getClientOriginalName());
+          $post->save();
 
-        return redirect('/posts')->with($notification);
+          return redirect('/posts')->with($notification);
+        } else {
+          $post = new Post;
+          $post->title = $request->input('title');
+          $post->body = $request->input('body');
+          $post->user_id = auth()->user()->id;
+          $post->cover_image = 'img/noimage.jpg';
+          $post->save();
+
+          return redirect('/posts')->with($notification);
+        }
 
     }
 
@@ -95,7 +92,7 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        
+
 
         $post = Post::find($id);
         $comments = DB::table('comments')
@@ -114,15 +111,15 @@ class PostsController extends Controller
     public function edit($id)
     {
         $notification = array(
-            'message' => 'Unauthorized Page', 
+            'message' => 'Unauthorized Page',
             'alert-type' => 'error'
         );
 
         $notificationUnAuth = array(
-            'message' => 'Unauthorized Page', 
+            'message' => 'Unauthorized Page',
             'alert-type' => 'error'
         );
-        
+
         $post = Post::find($id);
         // Check for correct user
         if(auth()->user()->id !== $post->user_id){
@@ -160,7 +157,7 @@ class PostsController extends Controller
         }
 
         $notification = array(
-            'message' => 'You post has successfully been updated!', 
+            'message' => 'You post has successfully been updated!',
             'alert-type' => 'info'
         );
 
@@ -190,13 +187,13 @@ class PostsController extends Controller
     public function destroy($id)
     {
         $notification = array(
-            'message' => 'You post has successfully been deleted!', 
+            'message' => 'You post has successfully been deleted!',
             'alert-type' => 'error'
         );
 
             // Uncomment to switch to popup notification
         // $notificationUnAuth = array(
-        //     'message' => 'Unauthorized Page', 
+        //     'message' => 'Unauthorized Page',
         //     'alert-type' => 'error'
         // );
 
