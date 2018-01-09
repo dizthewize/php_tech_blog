@@ -27,7 +27,7 @@
                 <div class="well fade-scroll">
                     <div class="row">
                         <div class="col-md-4 col-sm-4">
-                            <img class="fade-scroll" style="width:100%" src="/storage/cover_images/{{$post->cover_image}}">
+                            <img class="fade-scroll" style="width:100%" src="{{$post->cover_image}}">
                         </div>
                         <div class="col-md-8 col-sm-8">
                             <p class="meta">Posted by <span class="username">{{$post->user->username}}</span> on {{date('M j, Y h:ia', strtotime($post->created_at))}}</p>
